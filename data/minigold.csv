@@ -1,0 +1,17 @@
+token	gold
+The	O
+Computational	B-ORG
+Lexicology	I-ORG
+and	I-ORG
+Terminology	B-ORG
+Lab	I-ORG
+headed	O
+by	O
+Piek	B-PER
+Vossen	I-PER
+offers	O
+mutliple	O
+courses	O
+in	O
+NLP	B-MISC
+.	O

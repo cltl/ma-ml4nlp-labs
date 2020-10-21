@@ -1,0 +1,17 @@
+token	NER
+The	O
+Computational	I-ORG
+Lexicology	I-ORG
+and	O
+Terminology	I-ORG
+Lab	I-ORG
+headed	O
+by	O
+Piek	I-PER
+Vossen	I-PER
+offers	O
+mutliple	O
+courses	O
+in	O
+English	O
+.	O

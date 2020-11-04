@@ -5,6 +5,35 @@ import sys
 
 
 
+def extract_embeddings_as_features_and_gold(conllfile,word_embedding_model):
+    '''
+    Function that extracts features and gold labels using word embeddings
+    
+    :param conllfile: path to conll file
+    :param word_embedding_model: a pretrained word embedding model
+    :type conllfile: string
+    :type word_embedding_model: gensim.models.keyedvectors.Word2VecKeyedVectors
+    
+    :return features: list of vector representation of tokens
+    :return labels: list of gold labels
+    '''
+    ### This code was partially inspired by code included in the HLT course, obtained from https://github.com/cltl/ma-hlt-labs/, accessed in May 2020.
+    labels = []
+    features = []
+    
+    conllinput = open(conllfile, 'r')
+    csvreader = csv.reader(conllinput, delimiter='\t',quotechar='|')
+    for row in csvreader:
+        if len(row) == 6:
+            if row[0] in word_embedding_model:
+                vector = word_embedding_model[row[0]]
+            else:
+                vector = [0]*300
+            features.append(vector)
+            labels.append(row[-1])
+    return features, labels
+
+
 def extract_features_and_labels(trainingfile):
     
     data = []
@@ -77,6 +106,10 @@ def main(argv=None):
     trainingfile = argv[1]
     inputfile = argv[2]
     outputfile = argv[3]
+    
+    ## for the word_embedding_model used in the `extract_embeddings_as_features_and_gold' you can either choose to use a statement like this:
+    # language_model = gensim.models.KeyedVectors.load_word2vec_format('../../models/GoogleNews-vectors-negative300.bin.gz', binary=True)
+    ## and make sure the path works correctly, or you can add an argument to the commandline that allows users to specify the location of the language model.
     
     training_features, gold_labels = extract_features_and_labels(trainingfile)
     for modelname in ['logreg', 'NB', 'SVM']:

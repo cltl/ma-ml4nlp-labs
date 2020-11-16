@@ -24,7 +24,8 @@ def extract_embeddings_as_features_and_gold(conllfile,word_embedding_model):
     conllinput = open(conllfile, 'r')
     csvreader = csv.reader(conllinput, delimiter='\t',quotechar='|')
     for row in csvreader:
-        if len(row) == 6:
+        #check for cases where empty lines mark sentence boundaries (which some conll files do).
+        if len(row) > 3:
             if row[0] in word_embedding_model:
                 vector = word_embedding_model[row[0]]
             else:

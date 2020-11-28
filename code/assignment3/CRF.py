@@ -7,6 +7,9 @@ import sklearn_crfsuite
 from sklearn_crfsuite import metrics
 
 
+## based on https://github.com/cltl/ba-text-mining/blob/master/lab_sessions/lab4/Lab4a.4-NERC-CRF-Dutch.ipynb
+
+
 def token2features(sentence, i):
 
     token = sentence[i][0]

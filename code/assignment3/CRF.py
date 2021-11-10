@@ -39,17 +39,17 @@ def sent2tokens(sent):
     
     
 def extract_sents_from_conll(inputfile):
-    
-    csvinput = open(inputfile,'r')
-    csvreader = csv.reader(csvinput,delimiter='\t')
     sents = []
     current_sent = []
-    for row in csvreader:
-        current_sent.append(tuple(row))
-        #note that this is a simplification that works well for this particular data, in other situations, you may need to do more advanced preprocessing to identify sentence boundaries
-        if row[0] == ".":
-            sents.append(current_sent)
-            current_sent = []
+
+    with open(inputfile, 'r') as my_conll:
+        for line in my_conll:
+            row = line.strip("\n").split('\t')
+            if len(row) == 1:
+                 sents.append(current_sent)
+                 current_sent = []
+            else:
+                current_sent.append(tuple(row))
     return sents
 
 

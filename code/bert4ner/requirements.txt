@@ -1,0 +1,8 @@
+torch==1.7.1 
+keras==2.6.0
+tensorflow==2.6.0
+transformers==4.9.1
+datasets==1.11.0
+tabulate==0.8.9
+seqeval==1.2.2
+ipykernel

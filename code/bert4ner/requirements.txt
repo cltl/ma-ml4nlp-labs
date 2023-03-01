@@ -6,3 +6,4 @@ datasets==1.11.0
 tabulate==0.8.9
 seqeval==1.2.2
 ipykernel
+protobuf==3.20.*

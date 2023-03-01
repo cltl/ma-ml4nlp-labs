@@ -127,6 +127,39 @@ def add_to_label_dict(labels:List, label_dict: Dict) -> Dict:
             label_dict[l] = len(label_dict)
     return label_dict
 
+def read_json_srl(filename: str, delimiter: str='\t', has_labels: bool=True) -> Tuple[List, List, Dict]:
+    with open(filename) as infile:
+        lines = infile.readlines()
+        lines = [line.strip() for line in lines if line[0] != '#']
+    chunks = list()
+    chunk = list()
+    for line in lines:
+        if chunk and line == '':
+            chunks.append(chunk)
+            chunk = list()
+        else:
+            chunk.append(line)
+    return [get_json(chunk) for chunk in chunks]
+
+def get_json(chunk, delimiter='\t'):
+    sentence = list()
+    predicate_senses = [{'bio': []} for _ in range(len(chunk[0].split(delimiter)) - 11)]
+    pred_index = 0
+    
+    for line in chunk:         
+        tokens = line.split(delimiter)
+        sentence.append(tokens[1])
+        if len(tokens)>= 11 and tokens[10] != '_':
+            predicate_senses[pred_index]["pred_sense"] = [int(float(tokens[0])) -1, tokens[10]]
+            pred_index += 1
+        preds = tokens[11:]
+        for i, pred in enumerate(preds):
+            predicate_senses[i]['bio'].append(pred)
+    for i in range(len(predicate_senses)):
+        predicate_senses[i]["seq_words"] = sentence
+        
+    return predicate_senses
+
 
 def read_conll(filename: str, delimiter: str='\t', has_labels: bool=True) -> Tuple[List, List, Dict]:
     all_sentences, all_labels, buffer_lst = [], [], []

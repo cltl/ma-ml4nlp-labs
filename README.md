@@ -10,9 +10,12 @@ It is structured as follows:
 
 is the main directory for finding notebooks and scripts. This is the only directory you should submit when submitting your code. 
 
-It currently has two subfolders:
+It currently has three subfolders:
 /settings : for configuration files or other files with fixed definitions that support your code 
-/assignment1 : where you will find three notebooks that support Assignment 1
+/assignment1 : where you will find a notebook that support Assignment 1 (basic_system.ipynb) as well as a notebook from an old assignment that may contain useful functions (evaluation_assignment_2019_2022.ipynb)
+/assignment2: where you will find a notebook supporting Assignment 2
+/assignment3: where you will find a notebook supporting feature ablation analysis as well as code for two advanced systems
+/bert4ner: a repository with code to train Bert for NERC
 
 /data
 

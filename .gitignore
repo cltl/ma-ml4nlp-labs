@@ -1,0 +1,9 @@
+# Notebook cache
+.ipynb_checkpoints
+
+# Exclude data and models
+data
+models
+
+# Make an exception for the data of assignment 4:
+!assignment4_*/data

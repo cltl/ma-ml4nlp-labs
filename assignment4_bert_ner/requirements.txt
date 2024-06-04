@@ -1,0 +1,8 @@
+torch
+keras
+tensorflow
+transformers
+datasets
+tabulate
+seqeval
+ipykernel
